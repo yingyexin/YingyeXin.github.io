@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Real-Time Visual-Inertial Dense Mapping with Deep Multi-View Stereo">
+  <meta name="keywords" content="SimpleMapping">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SimpleMapping</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+
+
+
+  </script> -->
+
+<!-- <link rel="icon" type="image/png" href="media/nice-slam/like.png">  -->
+<link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./projects/simplemapping/css/bulma.min.css">
+  <link rel="stylesheet" href="./projects/simplemapping/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./projects/simplemapping/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./projects/simplemapping/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./projects/simplemapping/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./projects/simplemapping/js/fontawesome.all.min.js"></script>
+  <script src="./projects/simplemapping/js/bulma-carousel.min.js"></script>
+  <script src="./projects/simplemapping/js/bulma-slider.min.js"></script>
+  <script src="./projects/simplemapping/js/index.js"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://yingyexin.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <!-- <a class="navbar-item" href="https://pengsongyou.github.io/conv_onet">
+            ConvONet - ECCV 2020
+          </a> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <!-- <div class="columns is-centered">
+        <div class="column is-7 has-text-centered">
+          <img src="media/nice-slam/nice-slam-logo2.png" alt="NICE-SLAM"/>
+        </div>
+      </div> -->
+        <div class="column has-text-centered">
+          <!-- <h1 class="title is-1 publication-title"><img src="media/nice-slam/like.png" width="90">NICE-SLAM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>Neural Implicit Scalable Encoding for SLAM</h1> -->
+          <h1 class="title is-2 publication-title">SimpleMapping: Real-Time Visual-Inertial Dense</h1>
+          <h1 class="title is-2 publication-title">Mapping with Deep Multi-View Stereo</h1>
+          <div class="column is-full_width">
+            <h2 class="title is-5">IEEE International Symposium on Mixed and Augmented Reality (ISMAR) 2023</h2>
+          </div>
+          <!-- <br> -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+                <a href="https://yingyexin.github.io/">Yingye Xin</a><sup>1 *</sup></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="author-block">
+                  <a href="https://xingxingzuo.github.io/">Xingxing Zuo</a><sup>1,2 * #</sup></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="author-block">
+                <a href="https://dylanorange.github.io/">Dongyue Lu</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+              <span class="author-block">
+                <a href="https://www.professoren.tum.de/en/leutenegger-stefan">Stefan Leutenegger</a><sup>1,2</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+            </div>
+            <div class="column is-full_width">
+              <h2 class="is-size-6">* Equal Contribution</h2>
+              <h2 class="is-size-6"># Corresponding Author</h2>
+            <!-- <h2 class="is-size-6">(* equal contribution)  (<span>&#8224;</span> corresponding author)</h2> -->
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Smart Robotics Lab, Technical University of Munich</span>&nbsp;&nbsp;
+            <span class="author-block"><sup>2</sup>Munich Center for Machine Learning (MCML)</span>&nbsp;&nbsp;
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2306.08648.pdf" target="_blank"
+                   class="button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=qn35joS5zZM"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Poster Link. -->
+              <!-- <span class="link-block">
+                <a href="media/nice-slam/poster_nice-slam.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-palette"></i>
+                  </span>
+                  <span>Poster</span>
+                  </a>
+              </span> -->
+              <!-- Code Link. -->
+               <!-- <span class="link-block">
+                <a href="https://github.com/cvg/nice-slam" target="_blank"
+		   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span >Code</span>
+                  </a>
+              </span>  -->
+            </div>
+
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop height="100%">
+        <source src="projects/simplemapping/demo_720.mp4"
+                type="video/mp4">
+      </video>
+      <!-- <img class="rounded" src="./projects/simplemapping/cover.png" > -->
+      <br><br><br>
+      <h2 class="subtitle has-text-centered">
+      Showcase of EuRoC/V201 reconstructed in real-time with <strong>SimpleMapping</strong>. The current camera frame in green is navigating across the room while the surface mesh with texture is incrementally reconstructed online.
+    </h2>
+    <!-- <h2 class="subtitle has-text-centered">
+      (The <span style="color:#000000;">black</span> / <span style="color:#ff0000;">red</span> lines are the ground truth / predicted camera trajectory)
+    </h2> -->
+    <!-- <h2 class="is-size-6 has-text-centered">(The <span style="color:#000000;">black</span> / <span style="color:#ff0000;">red</span> lines are the ground truth / predicted camera trajectory)</h2> -->
+    
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+        <!-- Paper video. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Video</h2>
+            <div class="publication-video">
+                <iframe src="https://www.youtube.com/embed/qn35joS5zZM"></iframe>
+            </div>
+          </div>
+        </div>
+        <!--/ Paper video. -->
+      
+    <br>
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            <b>We present SimpleMapping, a real-time visual-inertial dense mapping method capable of performing incremental 3D mesh reconstruction with high quality
+                using only sequential monocular images and inertial measurement unit (IMU) readings.</b>
+          </p>
+          <p>
+            6-DoF camera poses are estimated by a robust feature-based visual-inertial odometry (VIO), which also generates noisy sparse 3D map points as a by-product. We propose a sparse point aided multi-view stereo neural network (SPA-MVSNet) that can effectively leverage the informative but noisy sparse points from the VIO system. The sparse depth from VIO is firstly completed by a single-view depth completion network. This dense depth map, although naturally limited in accuracy, is then used as a prior to guide our MVS network in the cost volume generation and regularization for accurate dense depth prediction. 
+            Predicted depth maps of keyframe images by the MVS network are incrementally fused into a global map using TSDF-Fusion. We extensively evaluate both the proposed SPA-MVSNet and the entire dense mapping system on several public datasets as well as our own dataset, demonstrating the system’s impressive generalization capabilities and its ability to deliver high-quality 3D reconstruction online. Our proposed dense mapping system achieves a 39.7% improvement in F-score over existing systems when evaluated on the challenging scenarios of the EuRoC dataset.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full_width">
+        <hr>
+        <h2 class="title is-3">Method</h2>
+        <br>
+        <img src="projects/simplemapping/system_overview2.png" class="center"/>
+        <div class="content has-text-justified">
+          <br>  
+          <p>
+            System overview of <strong>SimpleMapping</strong>. VIO takes input of monocular images and IMU data to estimate 6-DoF camera poses and generate a local map containing noisy 3D sparse points. Dense mapping process first performs the single-view depth completion with VIO sparse depth map $\hat{\mathbf{D}_{s_0}}$ and the reference image frame $\mathbf{I}_0$, then adopts multi-view stereo (MVS) network to infer a high-quality dense depth map for $\mathbf{I}_0$. The depth prior $\hat{\mathbf{D}}_0$ and hierarchical deep feature maps $\mathbf{\mathcal{F}}_0$  from the single-view depth completion contribute to the cost volume formulation and 2D CNN cost volume regularization in the MVS. The high-quality dense depth prediction from the MVS, $\breve{\mathbf{D}}_0$, is then fused into a global TSDF grid map for a coherent dense reconstruction.
+          </p>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <!-- Experimental Results.-->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full_width">
+        <h2 class="title is-3">Experimental Results</h2>
+      </div>
+    </div>
+    <h2 class="is-size-6 has-text-centered">(Baseline denotes the same VIO frontend integrated with SimpleRecon.)</h2>
+    <p>
+      &nbsp
+    </p>
+    <h3 class="title is-4">EuRoC Dataset</h3>
+    <p>  
+      Here we present 3D reconstruction on EuRoC V102 and V203 scenarios. <strong>SimpleMapping</strong> yields consistently better detailed reconstruction even in challenging scenarios.
+    </p>
+    <div class="columns is-centered has-text-centered">
+    </div>
+    <video id="euroc" autoplay muted loop height="100%">
+      <source src="projects/simplemapping/euroc.mp4"
+              type="video/mp4">
+    </video>
+
+    <p>
+      &nbsp
+    </p>
+    <p>
+      &nbsp
+    </p>
+    <p>
+      &nbsp
+    </p>
+    <h3 class="title is-4">ETH3D Dataset and Self-collected Dataset</h3>
+    <p>
+      As can be observed, both the baseline system and TANDEM suffer from inconsistent geometry and noticeable noise. <strong>SimpleMapping</strong> surpasses the other methods significantly in terms of dense mapping accuracy and robustness. 
+    </p>
+    <div class="columns is-centered has-text-centered">
+    </div>
+    <video id="eth3d" autoplay muted loop height="100%">
+      <source src="projects/simplemapping/eth3d&own.mp4"
+              type="video/mp4">
+    </video>
+
+    <p>
+      &nbsp
+    </p>
+    <p>
+      &nbsp
+    </p>
+    <p>
+      &nbsp
+    </p>
+    <h3 class="title is-4">ScanNet Dataset</h3>
+      <p>
+        We showcase the comparable reconstruction performance of <strong>SimpleMapping</strong> utilizing only a monocular camera setup without IMU, against a state-of-the-art RGB-D dense SLAM method with neural implicit representation, Vox-Fusion. Here is the results on ScanNet test set. 
+        Vox-Fusion tends to produce over-smoothed geometries and experience drift during long-time tracking, resulting in inconsistent reconstruction, as observed in Scene0787.
+      </p>
+      <div class="columns is-centered has-text-centered">
+      </div>
+      <video id="scannet" autoplay controls muted loop height="100%" >
+        <source src="projects/simplemapping/scannet.mp4"
+                type="video/mp4">
+      </video>
+      <p>
+        &nbsp
+      </p>
+      <p>
+        &nbsp
+      </p>   
+      <p>
+        &nbsp
+      </p>   
+      <h3 class="title is-4">Runtime Efficiency</h3>
+      <p>
+        We present the averaged per-keyframe runtime for each module and per-frame runtime for the whole process evaluated on EuRoC Dataset. <strong>SimpleMapping</strong> is able to ensure real-time performance, only requiring 55 ms to process one frame.
+      </p>
+      <p>
+        &nbsp
+      </p>
+      <p>
+        &nbsp
+      </p>
+      <div class="columns is-centered">
+        <img id="runtime" src="projects/simplemapping/runtime.PNG" style="width:500px;" >
+      </div>
+      <p>
+        &nbsp
+      </p>
+</div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{Xin2023ISMAR,
+      author    = {Xin, Yingye and Zuo, Xingxing and Lu, Dongyue and Leutenegger, Stefan},
+      title     = {{SimpleMapping: Real-Time Visual-Inertial Dense Mapping with Deep Multi-View Stereo}},
+      booktitle = {IEEE International Symposium on Mixed and Augmented Reality (ISMAR)},
+      month     = {Oct},
+      year      = {2023}
+  }</code></pre>
+  </div>
+</section>
+
+<section class="section" id="Acknowledgements">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+    This work is partially supported by Munich Center for Machine Learning (MCML), Germany.
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+            This webpage template is from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>. 
+            We sincerely thank <a href="https://keunhong.com/">Keunhong Park</a> for developing and open-sourcing this template.
+          </p>
+        </div>
+      </div>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
