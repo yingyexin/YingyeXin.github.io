@@ -9,7 +9,7 @@ redirect_from:
 ---
 
 <!-- <p align = "justify">  -->
-I am currently a Master's Student studying M.Sc Robotics, Cognition, Intelligence at Technical University of Munich (TUM), and expectedly graduate in October 2023. During my master studies, I work closely with [Dr. Xingxing Zuo](https://xingxingzuo.github.io/) and [Prof. Dr. Stefan Leutenegger](https://www.professoren.tum.de/en/leutenegger-stefan) in Smart Robotics Lab. Before that, I graduated with honors and obtained my bachelor's degree in vehicle engineering at Tongji University, Shanghai, China, in 2020.
+I am currently a Master's Student studying M.Sc Robotics, Cognition, Intelligence at Technical University of Munich (TUM), and expectedly graduate in October 2023. During my master study, I work closely with [Dr. Xingxing Zuo](https://xingxingzuo.github.io/) and [Prof. Dr. Stefan Leutenegger](https://www.professoren.tum.de/en/leutenegger-stefan) in Smart Robotics Lab. Before that, I graduated with honors and obtained my bachelor's degree in vehicle engineering at Tongji University, Shanghai, China, in 2020.
 <!-- </p> -->
 
 Research Interests
