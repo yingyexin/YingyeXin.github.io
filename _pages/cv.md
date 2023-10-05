@@ -66,7 +66,7 @@ Honor and Prizes
 
 Scholarships
 ======
-* 1rd Prize of Tongji Scholarship of Excellence (2016, 2017,2019)
+* 1st Prize of Tongji Scholarship of Excellence (2016, 2017,2019)
 * Chinese National Scholarship (2018)
 
 <!-- Teaching
